@@ -4,6 +4,7 @@
 # Author: Nishanth Koganti
 # Date: 2016/10/27
 
+import sys
 import GPy
 import pydmps
 import matplotlib
@@ -102,10 +103,6 @@ def plotTraj2(Dataset, points = None, colors={'Train':'b','Test':'r'}):
         plt.xlabel(xlabel, fontsize=12, fontweight='bold')
         plt.ylabel(ylabels[i], fontsize=12, fontweight='bold')
         plt.title('Dim %d' % (i+1), fontsize=15, fontweight='bold')
-
-        # plot legend only for 1st sub plot
-        if i == 0:
-            plt.legend()
 
     # adjust subplots for legend
     plt.tight_layout()
