@@ -110,6 +110,38 @@ def plotTraj2(Dataset, points = None, colors={'Train':'b','Test':'r'}):
     # show all the plots
     plt.show()
 
+def pcaLatent(model, trainInput, testInput):
+    # get latent space plot parameters
+    testData = model.transform(testInput)
+    trainData = model.transform(trainInput)
+    return trainData, testData
+
+def gplvmLatent(model, trainInput, testInput):
+    # get latent space plot parameters
+    qDim = model.X.shape[1]
+    testData = np.zeros((testInput.shape[0], qDim))
+    trainData = np.zeros((trainInput.shape[0], qDim))
+
+    for n in range(trainInput.shape[0]):
+        # infer latent position
+        xTrain, _ = model.infer_newX(np.atleast_2d(trainInput[n,:]), optimize=True)
+
+        # update parameter
+        trainData[n,:] = xTrain
+        sys.stdout.write('.')
+    sys.stdout.write('\n')
+
+    for n in range(testInput.shape[0]):
+        # infer latent position
+        xTest, _ = model.infer_newX(np.atleast_2d(testInput[n,:]), optimize=True)
+
+        # update parameter
+        testData[n,:] = xTest
+        sys.stdout.write('.')
+    sys.stdout.write('\n')
+
+    return trainData, testData
+
 def plotLatent(model, trainInput, testInput, nPoints=400, wThresh=0.05):
     sTest = 200
     sTrain = 150
