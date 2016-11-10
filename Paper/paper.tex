@@ -17,7 +17,7 @@
 \graphicspath{{./Images/}}
 \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
 
-\title{Data-efficient Motor-skills Learning in Latent Spaces for Robotic Clothing Assistance}
+\title{Bayesian Nonparametric Motor-skill Representations \\ for Efficient Learning of Robotic Clothing Assistance}
 
 \author{
   Nishanth Koganti$^{1,2}$, Tomoya Tamei$^{1}$, Kazushi Ikeda$^{1}$, Tomohiro Shibata$^{2}$\\
@@ -30,19 +30,17 @@
 \maketitle
 
 \begin{abstract}
-Robotic implementation of clothing assistance is a challenging problem that can greatly improve the quality-of-life for the elderly and disabled. In this study, we propose a data-efficient representation to encode task specific motor-skills of the robot using Bayesian nonparametric latent manifold learning. We implement our framework in a practical setting with a dual-arm robot performing clothing tasks. We demonstrate that performing motor-skills learning in such task specific latent spaces outperforms learning in the high-dimensional joint configuration space of the robot. Furthermore, our framework can also be used as a tool for learning from demonstration to impart novel skills to the robot.
+Motor-skill learning for complex robotic tasks is a challenging problem due to the high task variability. Robotic clothing assistance is one such challenging problem that can greatly improve the quality-of-life for the elderly and disabled. In this study, we propose a data-efficient representation to encode task specific motor-skills of the robot using Bayesian nonparametric latent manifold learning. We implement our framework in a practical setting with a dual-arm robot performing clothing tasks. We demonstrate that performing motor-skills learning in such task specific latent spaces outperforms learning in the high-dimensional joint configuration space of the robot. Furthermore, our framework can also be used as a tool for learning from demonstration to impart novel skills to the robot.
 \end{abstract}
 
 \section{Introduction}
 \label{section:introduction}
 
-Clothing assistance is a necessity in the daily life of the elderly and disabled people. However, robotic clothing assistance is still considered an open problem. Design of a robust framework involves reliable cloth state estimation in real-time and a motor skills learning framework that can detect and adapt to various failure scenarios. Tamei \emph{et al.}~\cite{tamei} proposed a reinforcement learning (RL) framework for clothing assistance with a dual-arm robot to cloth a soft mannequin with a T-shirt initially resting on its arms. For tractable learning time, policy update was done using finite difference policy gradient applied to a single via-point of a single joint in each robot arm. This severely constrained the generalization capability to very different environmental settings such as major changes in the subject's posture or using different clothing article.
+Enabling robots to interact with the environment and learning motor skills to perform complex tasks is one of the major goals of the AI community. However, existing methods require large number of interactions to learn optimal behavior which is not suitable in practical scenarios such as in the field of Assistive Robotics. Clothing assistance is one such task which is a necessity in the daily life of the elderly and disabled people. Design of a robotic framework involves a motor skills learning framework that can detect and adapt to various failure scenarios. Tamei \emph{et al.}~\cite{tamei} proposed a reinforcement learning (RL) framework for clothing assistance with a dual-arm robot to cloth a soft mannequin with a T-shirt. For tractable learning time, policy update was done using finite difference policy gradient applied to a small subset of policy parameters. This constrained generalization capability to very environmental settings such as major changes in the subject's posture or using different clothing article.
 
 To address this problem, we need to consider an alternate representation that is more flexible and suitable for robust learning of motor-skills. An efficient approach is the use of dimensionality reduction (DR) along with reinforcement learning (RL). There have been several studies in this direction in the recent years. Bitzer \emph{et al.}~\cite{bitzer} proposed a learning framework where DR was used as a preprocessing step to extract the problem structure. However, this study relies on a maximum-a-posteriori (MAP) estimate of the latent space and can overfit to the training data. Luck \emph{et al.}~\cite{luck} proposed a policy search framework that inherently combines RL and DR wherein the latent space is learned based on the reward signals. However, this framework relies on the use of linear dimensionality reduction which limits applicability to complex tasks.
 
-In this study, we propose an efficient representation of motor skills that relies on the use of Bayesian Gaussian Process Latent Variable Model (BGPLVM)~\cite{bgplvm}. BGPLVM is capable of learning a data-efficient latent space for clothing tasks performed by a dual-arm robot. Representation of clothing skills in a low-dimensional space enables the use of expressive policy update rules for generalization to very different settings. We apply our proposed method to a clothing assistance setup as shown in Figure~\ref{figure:overview}. We demonstrate that performing policy search in this latent space outperforms learning in the high-dimensional action space. We further present the design of a real-time controller from the BGPLVM latent space that can be used as a tool for Learning from Demonstration (LfD). The experimental results indicate a promising reinforcement learning learning that can be used for challenging tasks such as robotic clothing assistance.
-
-The rest of the paper is structured as follows. The proposed framework is presented in Section~\ref{section:method}. Section~\ref{section:results} includes experimental results and Section~\ref{section:conclusion} concludes the paper with directions for future work.
+In this study, we propose an efficient representation of motor skills that relies on the use of Bayesian Gaussian Process Latent Variable Model (BGPLVM)~\cite{bgplvm}. We hypothesize that the latent space learned using BGPLVM is an efficient search space to learn novel motor-skills for complex robotics tasks such as clothing assistance. Furthermore, the mapping from latent space to data space is modeled using a Gaussian Process (GP)~\cite{gp} allowing data-efficient learning. This is crucial to ensure the robot can generalize well to unseen environmental settings within few interactions making it suitable for a feasible social implementation of robotic clothing assistance. We apply our proposed method to a clothing assistance setup as shown in Figure~\ref{figure:overview}. We demonstrate that performing policy search in this latent space outperforms learning in the high-dimensional action space. We further present the design of a real-time controller from the BGPLVM latent space that can be used as a tool for Learning from Demonstration (LfD). The experimental results indicate a promising reinforcement learning framework that can be used for challenging tasks such as robotic clothing assistance.
 
 \section{Proposed Method}
 \label{section:method}
@@ -53,7 +51,7 @@ The rest of the paper is structured as follows. The proposed framework is presen
   \caption{Overview of proposed framework. Figure on the left shows the setup for clothing assistance and the figure on the right shows the latent space encoding the motor skills. This latent space can be used a tool for Learning from Demonstration (LfD) and also for data-efficient reinforcement learning.}
   \label{figure:overview}
 \end{figure}
-In this study, we explore the suitability of using Bayesian Gaussian Process Latent Variable Model (BGPLVM) to learn a latent space as a low dimensional representation of motor skills for clothing assistance. This section is divided into three parts. Section~\ref{section:bgplvm} provides the formulation of BGPLVM, Section~\ref{section:clothassist} presents the application of BGPLVM in the clothing assistance framework and Section~\ref{section:latentrl} includes the formulation of a policy search framework that relies on the use of this representation.
+Motor skills for clothing assistance are given by high dimensional joint angle trajectories of the dual-arm robot. The robot also has to maintain several task space constraints such as coupling with a clothing article along with safe human-robot interaction as shown in Figure~\ref{figure:overview}. To address these problems, we propose the use of BGPLVM for learning a low-dimensional latent space through a nonlinear mapping to the kinematic space. There several motivating factors for this choice. The Bayesian treatment avoids over fitting to the training data and the use of an ARD kernel in the GP mapping leads to inference of the inherent dimensionality to encode motor-skills.
 
 \subsection{Bayesian Nonparametric Latent Space Learning}
 \label{section:bgplvm}
@@ -79,39 +77,48 @@ The ARD weights $\alpha_q$ describe the relevance of each dimension and zero wei
 	\label{eqn:testinference}
 	p(\mathbf{y}^*|\mathbf{Y}) = \frac{\int p(\mathbf{y}^*,\mathbf{Y}|\mathbf{x}^*,\mathbf{X})p(\mathbf{x}^*,\mathbf{X})d\mathbf{X}d\mathbf{x}^*}{\int p(\mathbf{Y}|\mathbf{X})p(\mathbf{X})d\mathbf{X}}
 \end{equation}
-Efficient computations to handle test data is further described in \cite{bgplvm}.
 
 \subsection{Motor Skills Representation using BGPLVM}
 \label{section:clothassist}
 
-Motor skills for clothing assistance are given by high dimensional joint angle trajectories of the dual-arm robot. The robot also has to maintain several task space constraints such as coupling with a clothing article along with safe human-robot interaction as shown in Figure~\ref{figure:overview}. To address these problems, we propose the use of BGPLVM for learning a low-dimensional latent space through a nonlinear mapping to the kinematic space. The Bayesian treatment avoids over fitting to the training data and automatic inference of latent space dimensionality through the ARD kernel. We consider the clothing task where a dual-arm robot clothes a soft mannequin with a T-shirt which is initially resting on the mannequin's arms. We represent the robot poses in two ways i.e. 1) Kinematic representation given by joint angles $D_K = 14$ and 2) Task space representation given by the end-effector pose of both arms with cartesian position ${P_X,P_Y,P_Z} \in \mathbb{R}^3$ and orientation ${O_X,O_Y,O_Z,O_{\omega}} \in \mathbb{R}^4$ forming a 14-dimensional space $D_T = 14$. We set the dimension of the latent space as $q = 5$, however the dimensionality is eventually inferred through the training of the ARD kernel weights as explained in Section~\ref{section:bgplvm}.
+In this section, we present the formulation used to apply BGPLVM to clothing assistance skills. We consider the clothing task where a dual-arm robot clothes a soft mannequin with a T-shirt which is initially resting on the mannequin's arms. We represent the robot poses in two ways i.e. 1) Kinematic representation given by joint angles $D_K = 14$ and 2) Task space representation given by the end-effector pose of both arms with cartesian position ${P_X,P_Y,P_Z} \in \mathbb{R}^3$ and orientation ${O_X,O_Y,O_Z,O_{\omega}} \in \mathbb{R}^4$ forming a 14-dimensional space $D_T = 14$. We set the dimension of the latent space as $q = 5$, however the dimensionality is eventually inferred through the training of the ARD kernel weights as explained in Section~\ref{section:bgplvm}.
 
-There can be several types of failure scenarios when the robot performs clothing tasks. While clothing, the T-shirt collar could get stuck on the mannequin's head and while unclothing, the T-shirt could get stuck in the mannequin's shoulder joints. To recover from these failures, not only is the trajectory of the robot important, but also the speed of execution. Imparting these skills through kinesthetic movement of the arms can be difficult for a bulky robot and could lead to noisy demonstrations. To address this problem, we have implemented a real-time controller that gets an input signal from the BGPLVM latent space. The BGPLVM model learns a mapping from the low dimensional latent space to the robot kinematic space such that a trajectory of latent points generates a trajectory on the dual-arm robot. This interface can be used as a tool for Learning from Demonstration (LfD) where the necessary clothing skills are imparted to the robot by using cursor control over the latent space as shown in Figure~\ref{figure:overview}.
+There can be several types of failure scenarios when the robot performs clothing tasks. To recover from these failures, not only is the trajectory of the robot important, but also the speed of execution. Imparting these skills through kinesthetic movement of the arms can be difficult for a bulky robot and could lead to noisy demonstrations. To address this problem, we have implemented a real-time controller that gets an input signal from the BGPLVM latent space. The BGPLVM model learns a mapping from the low dimensional latent space to the robot kinematic space such that a trajectory of latent points generates a trajectory on the dual-arm robot. This interface can be used as a tool for Learning from Demonstration (LfD) where the necessary clothing skills are imparted to the robot by using cursor control over the latent space. Cursor control on the latent space was able to reproduce the clothing demonstration even when the latent trajectory was different from the training latent points.
 
 \subsection{Latent Space Reinforcement Learning}
 \label{section:latentrl}
 
-In this study, we hypothesize that the latent space learned using BGPLVM is an efficient search space to learn policies that generalize well to unseen environmental settings. We formulate a policy search framework in the BGPLVM latent space to demonstrate the validity of this hypothesis. The objective is to learn a high-dimensional robot trajectory for performing the clothing task to an unseen posture of the mannequin by searching within this latent space. Firstly, a dataset of successful clothing assistance trajectories is used to train a latent space that encodes the motor skills. Each of the trajectory is now transformed into a sequence of points in the latent space forming latent space trajectories. The policy search is performed using the derivative-free Cross Entropy Method which treats the cost as black box function.
+In this section, we formulate a policy search framework in the BGPLVM latent space. The objective is to learn a high-dimensional robot trajectory for performing the clothing task on an unseen posture of the mannequin by searching within this latent space. Firstly, a dataset of successful clothing assistance trajectories is used to train a latent space that encodes the motor skills. Each of the trajectory is now transformed into a sequence of points in the latent space forming latent space trajectories. The policy search is performed using the cross-entropy method (CEM)~\cite{cem} which is a general algorithm for approximately solving global optimization problems. It has been widely used in robotics to learn controllers for performing various tasks.
 
-We consider Dynamic Movement Primitives (DMP)~\cite{dmp} as the policy representation, commonly used in Robotics. It is combination of a point attractor dynamical system and a non-linear forcing term learned using Locally Weighted Regression (LWR)~\cite{lwr}. We train a DMP on one of the latent trajectories and the LWR wight coefficients are used as the policy parameters. The cost function for policy improvement is designed in the high-dimensional action space. In the current setting, we obtain a demonstration for the unseen posture and consider this as the optimized trajectory to be achieved. The optimized trajectory is efficiently encoded by via-points extracted using a minimum jerk criterion~\cite{via} that the robot needs to pass through. The cost function is given by the sum of all errors between the reconstructed robot trajectory and the desired via-points.
-
+We consider Dynamic Movement Primitives (DMP)~\cite{dmp} as the policy representation. It is combination of a point attractor dynamical system and a non-linear forcing term learned using Locally Weighted Regression (LWR)~\cite{lwr}.
+%\begin{equation}
+%  \begin{array}{c}
+%    \tau \ddot{x} = K(g-x) -D\dot{x} + (g - x_0)f\\~\\
+%    \displaystyle f(s) = \frac{\sum_i w_i \psi_i(s)s}{\sum_i \psi_i(s)}, \text{ where } \tau \dot{s} = - \alpha s
+%  \end{array}
+%\end{equation}
+We train a DMP on one of the latent trajectories and the LWR wight coefficients are used as the policy parameters. The cost function for policy improvement is designed in the high-dimensional action space. In the current setting, we obtain a demonstration for the unseen posture and consider this as the optimized trajectory to be achieved. The optimized trajectory is efficiently encoded by via-points extracted using the minimum jerk criterion~\cite{via} that the robot needs to pass through. The cost function is given by the sum of all errors between the reconstructed robot trajectory and the desired via-points:
+\begin{equation}
+  R(\tau) = \sum_{i = 1}^{n_{\text{dims}}} \sum_{j = 1}^{n_{\text{via}}} (V_{i,j} - x^{recons}_i(t_{i,j}))
+\end{equation}
+where $R(\tau)$ is the total reward for trajectory $\tau$, $V_{i,j}$ is the $j^{\text{th}}$ via point of $i^{\text{th}}$ dimension and $x^{recons}_i(t)$ is the value at time $t$ for $i^{\text{th}}$ dimension of reconstructed trajectory.
 \section{Results}
 \label{section:results}
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.3\textwidth]{latentscales.png}
   \includegraphics[width=0.3\textwidth]{latentspace.png}
+  \includegraphics[width=0.3\textwidth]{rmse.png}
   \includegraphics[width=0.3\textwidth]{rlcurve.png}
-  \caption{Experimental results of applying BGPLVM to clothing assistance demonstrations for the joint angle scenario. Figure on left shows the resultant ARD weight parameters, figure in the middle shows the latent space and figure on the right shows the learning curves comparing reinforcement learning in latent space and action space.}
+  \caption{Experimental results of applying BGPLVM to clothing assistance demonstrations for the joint angle scenario. Figure on the left shows the latent space, middle shows comparison of reconstruction error and right shows learning curves with different LVMs and in the action space.}
   \label{figure:results}
 \end{figure}
 
-In this section, we present the applicability of BGPLVM for encoding clothing skills. We used an evaluation dataset given by successful clothing assistance demonstrations for 4 different postures of the mannequin obtained by changing the elevation of the mannequin's arms. Latent spaces were trained by considering 3 trajectories as the training data and the remaining trajectory was used as test data. The ARD weights on training resulted in 3 active latent dimensions for the joint angle scenario and 2 latent dimensions for the end effector scenario. This implies that the motor skills encoded varies depending the input action space. The latent scales and latent space visualizations for the joint angle scenario is shown in Figure~\ref{figure:results}.
+In this section, we present the applicability of BGPLVM for encoding clothing skills. The evaluation dataset contains 4 clothing trials that were obtained for 4 different postures of the mannequin wherein the elevation of the arms were varied forming different angles $\{65^o, 70^o, 75^o, 80^o\}$ with the mannequin's body. The clothing trial for $75^o$ was left out as the test data and latent variable models were trained for the remaining 3 clothing trials. The ARD weights on training resulted in 3 active latent dimensions for the joint angle scenario and 2 latent dimensions for the end effector scenario. This implies that the motor skills encoded varies depending the input action space. The latent scales and latent space visualizations for the joint angle scenario is shown in Figure~\ref{figure:results}.
 
-Cursor control on the latent space was able to reproduce the clothing demonstration even when the latent trajectory was different from the training latent points. The resultant latent dimensions further captured a specific aspect of the clothing motor-skills. For example, the most significant dimension captured the horizontal motion of the arms along the mannequin while maintaining the constraints for clothing. The second dimension captured various vertical motions of pulling up the T-shirt in the beginning and pulling it down along the torso at the end. A video demonstration of the controller is available at (youtube link).
+The latent dimensions captured by BGPLVM a specific aspect of the clothing motor-skills. For the joint angle scenario, the most significant dimension captured the horizontal motion of the arms along the mannequin while maintaining the constraints for clothing. The second dimension captured various vertical motions of pulling up the T-shirt in the beginning and pulling it down along the torso at the end. The third dimension captured variations in joint configurations across the demonstrations and could explain the constraint of safe human-robot interaction. A video demonstration with the exploration of the latent dimensions is available at (youtube link). The predictive performance of BGPLVM was evaluated by comparing the reconstruction error with two other latent variable models (LVM) i.e. Principal Component Analysis (PCA)~\cite{pca} and Gaussian Process Latent Variable Model (GPLVM)~\cite{gplvm}. Figure~\ref{figure:results} shows that BGPLVM has the best performance.
 
-We further demonstrate the effectivity of performing policy search in the BGPLVM latent space by comparison with search in the high-dimensional action space. For the comparison, the policy search method, policy representation and reward function are the same for both the cases. The main difference is the search space i.e. low-dimensional latent space or high-dimensional action space. CEM was run for 50 iterations where 50 rollouts were performed in each iteration and the top 5 rollouts were retained for computing the mean and variance of the policy parameters. Figure~\ref{figure:results} show the learning curves for both reinforcement learning formulations indicating the latent space scenario outperforms policy search in the high dimensional space, thereby validating our hypothesis.
+We further demonstrate the effectivity of performing policy search in the BGPLVM latent space by comparison with search in the high-dimensional action space and in latent spaces learned using PCA and GPLVM. For the comparison, the policy search method, policy representation and reward function are the same for both the cases. The main difference is the search space i.e. low-dimensional latent space or high-dimensional action space. CEM was run for 50 iterations where 50 rollouts were performed in each iteration and the top 5 rollouts were retained for computing the mean and variance of the policy parameters. Figure~\ref{figure:results} show the learning curves for both reinforcement learning formulations indicating the BGPLVM scenario performs better than all other search spaces. This validates our hypothesis that encoding motor-skills using Bayesian non parametric latent variable models is an effective parametrization for learning.
 
 \section{Conclusion}
 \label{section:conclusion}
@@ -136,6 +143,12 @@ Bitzer, S., Howard, M., and Vijayakumar, S, ``Using dimensionality reduction to 
 \bibitem{luck}
 Luck, K. S., Neumann, G., Berger, E., Peters, J., and Ben Amor, H, ``Latent space policy search for robotics'' in Proc. of the IEEE Intl. Conf. on Intelligent Robots and Systems (IROS), 2014.
 
+\bibitem{gp}
+Williams, C., and Rasmussen, C. E., ``Gaussian processes for machine learning'' by the MIT Press 2.3 (2006): 4.
+
+\bibitem{cem}
+De Boer, P., Kroese, D. P., Mannor, S., and Rubinstein, R. Y., ``A tutorial on the cross-entropy method'' in Annals of operations research 134, no. 1 (2005): 19-67.
+
 \bibitem{dmp}
 Ijspeert, A. J., Nakanishi, J., Hoffmann, H., Pastor, P., and Schaal, S., ``Dynamical movement primitives: learning attractor models for motor behaviors'', in Neural computation 25, no. 2 (2013): 328-373.
 
@@ -144,6 +157,12 @@ Schaal, S., and Atkeson, C. G., ``Constructive incremental learning from only lo
 
 \bibitem{via}
 Wada, Y., and Kawato, M., ``A theory for cursive handwriting based on the minimization principle'', in Biological Cybernetics 73.1 (1995): 3-13.
+
+\bibitem{pca}
+Jolliffe, I., ``Principal component analysis'' by John Wiley and Sons, Ltd, 2002.
+
+\bibitem{gplvm}
+Lawrence, N., ``Probabilistic non-linear principal component analysis with Gaussian process latent variable models'' in Journal of Machine Learning Research 6.Nov (2005): 1783-1816.
 
 \bibitem{mrd}
 Damianou, A., Ek, C., Titsias, M., and Lawrence, N, ``Manifold relevance determination'' in Proc. of the Intl. Conf. on Machine Learning, 2012.
