@@ -1,0 +1,18 @@
+SUMMARY:
+The authors present a reinforcement learning approach for robotic clothing assistance. The method learns a low-dimensional embedding of the high-dimensional trajectories via a Gaussian process latent variable model (GP-LVM), allowing policy search in the low dimensional latent space.
+
+PROS:
+Robotic clothing assistance is an interesting application that is not widely studied at ML venues such as NIPS. The proposed approach is general and could be applied more broadly in other domains of robot control.
+
+CONS:
+This reviewer feels that the paper is lacking in necessary details and needs further clarification in a number of areas. Beginning in Sec. 2.1 the authors incorrectly refer to (2) as a marginal likelihood, this is a conditional likelihood, the marginal likelihood is intractable as described in Titsias et al. (2010). The authors provide no reference of how ARD parameters are estimated, presumably this is done via the variational approximation of Titsias et al. (2010).
+
+The latent space policy search proposed in Sec. 2.3 is mostly explained in words and is confusing as a result. The DMP representation requires an explicit formulation as the relationship between the high-dimensional cost function and latent space embedding is unclear. Moreover, because BGPLVM marginalizes over the latent state it is unclear how optimization in this latent space proceeds without adequate detail.
+
+The experimental results appear to be conducted on only 4 trials, each at a different arm orientation, with one trial held out for test. The authors should justify that overfitting is not an issue with such limited data. 
+
+More detailed comments below:
+
+•	The abstract refers to “latent manifold learning”, which is a bit misleading since no such manifold representation is given
+
+•	The wording of the following sentence in the first paragraph is confusing making it difficult to orient the proposed approach with prior work, “This constrained generalization capability to very environmental settings such as major changes in the subject’s posture or using different clothing article.”

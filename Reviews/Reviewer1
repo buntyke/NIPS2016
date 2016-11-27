@@ -1,0 +1,63 @@
+Title: (17) Nishanth Koganti, Tomoya Tamei, Kazushi Ikeda and Tomohiro Shibata. Bayesian Nonparametric Motor-skill Representations for Efficient Learning of Robotic Clothing Assistance
+
+Objective: Learning for robots that perform clothing assistance
+How: combination of RL with BGPLVM
+
+———————————————
+Main impression
+———————————————
+
+This papers present a novel and useful application for society, i.e., learning of robotic clothing assistance. The paper message is very clear, and the idea is interesting: the approach combines elements from Reinforcement Learning and Bayesian Nonparametric models. Reading the paper was very enjoyable.
+
+As future research paths, the points I find particularly interesting are the following:
+- changing the i.i.d prior over the latent points x_i to a more structured prior for dynamical systems. Also, the fact that not only trajectories are important, but also the speed of task execution is interesting. You might also want to model the first derivative of the system.
+- include in the model specific constraints for safe human-robot interaction (how can we guarantee that the robot will not accidentally "hurt the manequin”?) Do you take any specific measures right now (high cost function values or constrained values for the length-scale)?
+
+
+———————————————
+Major comments:
+———————————————
+
+- As far as I understood, you are applying the standard BGPLVM with i.i.d latent variables (independent Gaussian prior for each x_i). Have you considered to put a more structured prior on the trajectories, like a GP or a Markovian relationship between points?
+(see Section 2.2. of paper: http://www.jmlr.org/papers/volume17/damianou16a/damianou16a.pdf )
+
+- Dimensionality of latent space: In Section 2.2, you choose q = 5. Why not a higher q and let ARD bring the redundant coeff. to zero? (Of course, the smaller q is, the easier inference is, but there is a risk of restricting the latent space too much). Do you have prior knowledge to expect at most 5 latent dimensions?
+
+- Regarding Figure 2c), I am surprised PCA is better than GPLVM, why is that? Also, could you further comment on the differences between GPLVM and PCA in terms of qualitative differences? How do PCA trajectories and/or dimensions differ from GPLVM ones?
+
+- When you describe the input data (Section 2.2), angles are actually not real numbers, but positive and circular in nature. Have you considered to change the Gaussianity assumption over X to something else? My impression is that Inference might get too difficult, but might be interesting to check. From the practical point of view, this might not have a strong impact, although it is interesting from the modelling point of view.
+
+- Regarding the total reward (equation (5)), I am surprised there is no absolute value? It does not correspond to neither L1 nor L2 norms. Could we use any of these too?
+
+- In the Results Section, you use one particular clothing trial for testing, but for the final work, leave-one-out validation would be more appropriate.
+
+- Could you comment on computational cost?
+
+- More details on how the real-time controller works would be appreciated, but of course, I understand the space limitations of the Workshop.
+
+———————————————
+Small comments:
+———————————————
+
+- When you say: "Furthermore, the mapping from latent space to data space is modelled using a Gaussian Process", this is exactly how BGPLVM works, so why "Furthermore"? The text leads a little bit to confusion.
+
+- No need to put the video link twice in the article (also, I tried to watch the video, but it did not work, so that you know).
+
+- In Results Section, what is a rollout?
+
+- Although it did not compromised the understanding of the paper, English typos should be corrected:
+
+very environmental -> varying environmental
+in the recent years -> in recent years
+extract the problem structure -> extract problem structure
+robotics tasks -> robotic tasks
+used a tool -> used as a tool
+There several -> There are several
+over fitting -> overfitting
+hyper parameters -> hyperparameters
+as the policy representation -> as policy representation
+It is combination of -> It is the combination of
+the LWR wight coefficients are used as the policy parameters
+the motor skills encoded varies -> the encoded motor skills
+depending the input action -> depending on the input action
+etc...
