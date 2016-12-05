@@ -30,164 +30,51 @@
 \begin{frame}[t]
 
 \begin{columns}[t]
+  \begin{column}{.02\linewidth}\end{column}
 
-\begin{column}{.02\linewidth}\end{column}
+  \begin{column}{0.47\linewidth}
+    \begin{block}{Introduction}
+      \begin{center}
+        \textbf{Abstract}: Motor-skill learning for complex robotic tasks is a challenging problem due to the high task variability. Robotic clothing assistance is one such challenging problem that can greatly improve the quality-of-life for the elderly and disabled. In this study, we propose a data-efficient representation to encode task specific motor-skills of the robot using Bayesian nonparametric latent space learning. We implement our framework in a practical setting with a dual-arm robot performing clothing assistance tasks. We demonstrate that performing motor-skills learning in such task specific latent spaces outperforms learning in the high-dimensional joint configuration space of the robot. Furthermore, our framework can also be used as a tool for learning from demonstration to impart novel skills to the robot.
+      \end{center}
+    \end{block}
+  \end{column}
 
-\begin{column}{0.47\linewidth}
+  \begin{column}{0.47\linewidth}
+    \begin{block}{Problem Decription}
 
-\begin{block}{Introduction}
+    \end{block}
+  \end{column}
 
-\begin{center}
-\textbf{Objective}: Robotic Clothing Assistance is a challenging problem involving \emph{interaction with Human and Clothing material}. In this study, we propose a method for the realtime estimation of the Human-Cloth topological relationship using a depth sensor.
-\end{center}
-
-\begin{columns}[t]
-
-\begin{column}{0.55\linewidth}
-
-~\\
-Tamei et. al.[1] developed clothing assistance robot to perform T-shirt clothing task:\\~\\
-\begin{itemize}
-\item \textbf{Reinforcement Learning} scheme used to acquire motor skills for cloth handling.\\~\\
-\item \textbf{Low dimensional represetations} of state and policy used to ensure fast learning time.
-\end{itemize}
-
-\end{column}
-
-\begin{column}{0.45\linewidth}
-
-\begin{figure}
-\centering
-\includegraphics[width=0.9\textwidth]{mannequin.png}
-\end{figure}
-
-\end{column}
-
-\end{columns}
-
-\end{block}
-
-\end{column}
-
-\begin{column}{0.47\linewidth}
-
-\begin{block}{Problem Decription}
-
-\begin{columns}[t]
-
-\begin{column}{0.5\linewidth}
-\textbf{Topology Coordinates}[2] represents interaction between two curves using low dimensional variables:
-
-\begin{itemize}
-\item \textbf{Writhe}, $w \in \mathbb{R}$
-\vspace{3mm}
-\item \textbf{Center}, $\text{c} = [c_1,c_2] \in \mathbb{R}^2$
-\vspace{3mm}
-\item \textbf{Density}, $d \in \mathbb{R}$
-\end{itemize}
-
-\vspace{3mm}
-
-\begin{figure}
-\centering
-\includegraphics[width=\linewidth]{humancloth.pdf}
-\end{figure}
-
-\end{column}
-
-\begin{column}{0.5\linewidth}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{topology.png}
-\end{figure}
-
-\vspace{3mm}
-
-\centering \textbf{Human-Cloth relationship} low dimensionally represented using topology coordinates:
-
-\begin{itemize}
-\item T-shirt collar and Mannequin's Head
-\vspace{2mm}
-\item T-shirt collar and Mannequin's Body
-\vspace{2mm}
-\item T-shirt sleeve and Mannequin's Shoulder
-\end{itemize}
-
-\end{column}
-
-\end{columns}
-
-\end{block}
-
-\end{column}
-
-\begin{column}{.02\linewidth}\end{column}
-
+  \begin{column}{.02\linewidth}\end{column}
 \end{columns}
 
 \begin{columns}[t]
+  \begin{column}{0.02\linewidth}\end{column}
 
-\begin{column}{0.02\linewidth}\end{column}
+  \begin{column}{0.96\linewidth}
+    \begin{alertblock}{Motor-skill Representations in Latent Spaces}
+      \begin{columns}[t]
+        \begin{column}{0.24\linewidth}
+          \centering \textbf{Learning from Demonstration}
 
-\begin{column}{0.96\linewidth}
+        \end{column}
 
-\begin{alertblock}{Proposed Method}
+        \begin{column}{0.48\linewidth}
+          \centering \textbf{Proposed Framework}
 
-\begin{columns}[t]
+        \end{column}
 
-\begin{column}{0.24\linewidth}
+        \begin{column}{0.24\linewidth}
+          \centering \textbf{Reinforcement Learning Formulation}
 
-\centering \textbf{Experimental Setup}
+        \end{column}
+      \end{columns}
+    \end{alertblock}
+  \end{column}
 
-\begin{itemize}
-\item Human-Cloth relationship observed using \textbf{Kinect depth sensor}.\\~\\
-\item \textbf{Color markers} used on T-shirt and Mannequin to ensure robust estimation.
-\end{itemize}
-
-\vspace{6mm}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{setup.png}
-\end{figure}
-
-\end{column}
-
-\begin{column}{0.48\linewidth}
-
-\centering \textbf{Proposed Method}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth,height=0.22\textheight]{method.pdf}
-\end{figure}
-
-\end{column}
-
-\begin{column}{0.24\linewidth}
-
-\centering \textbf{T-shirt state estimation}
-
-\vspace{3mm}
-
-\begin{itemize}
-\item T-shirt collar and sleeve shape compactly represented using \textbf{Ellipses}.\\~\\
-\item Generic 3D conic fitting approach proposed Shakarji et. al.~\cite{ellipse} used for this purpose.
-\end{itemize}
-
-\vspace{3mm}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{collarestimates.pdf}
-\end{figure}
-
-\end{column}
-
+  \begin{column}{0.02\linewidth}\end{column}
 \end{columns}
-
-\end{alertblock}
 
 \begin{alertblock}{Experimental Results}
 
@@ -195,7 +82,7 @@ Tamei et. al.[1] developed clothing assistance robot to perform T-shirt clothing
 
 \begin{column}{0.49\linewidth}
 
-\centering \textbf{Robustness of Topology Space to Measurement Noise}\\
+\centering \textbf{}\\
 \vspace{3mm}
 \centering Robustness evaluated by comparing rewards obtained in \emph{Cartesian} and \emph{Topological} space.
 
