@@ -1,0 +1,17 @@
+# Changes to NIPS paper
+---
+
+* Provide formulation for DMP and relationship with latent space embedding (Done)
+* Provide explanation on inference of ARD weight parameters (Done)
+* Improve explanation of BGPLVM inference algorithm (Done)
+* Emphasis on variability of dataset which avoids overfitting (Done)
+* Remove second instance of video link and check typesetting of video link url (Done)
+* Include explanation on computation cost of BGPLVM in results section (Done)
+* Improve explanation for rl curves figure on why GPLVM performs worse than PCA (Done)
+* Update equation 5 on reward function to L2 norm (Done)
+* Remove the term furthermore in final paragraph of introduction section. (Done)
+* Provide explanation of rollout in Results section (Done)
+* Fix all minor typos indicated by reviewer 1 (Done)
+* Correct marginal likelihood term to conditional likelihood (Done)
+* Change wording from latent manifold to latent space (Done)
+* Change sentence structure on generalization ability of work by Tamei (Done)

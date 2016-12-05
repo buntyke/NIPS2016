@@ -1,0 +1,26 @@
+## Reviews for NIPS Paper
+---
+
+| Reviewer ID | Comment | Response |
+| :---: | :---: | :---: |
+| 1 | The fact that not only trajectories are important, but also the speed of task execution is interesting. You might also want to model the first derivative of the system. | Future Work |
+| 1 | Include in the model specific constraints for safe human-robot interaction (how can we guarantee that the robot will not accidentally "hurt the manequin”?) Do you take any specific measures right now (high cost function values or constrained values for the length-scale)? | Future Work |
+| 1 | As far as I understood, you are applying the standard BGPLVM with i.i.d latent variables (independent Gaussian prior for each x_i). Have you considered to put a more structured prior on the trajectories, like a GP or a Markovian relationship between points? (see Section 2.2. of paper) |  Future Work |
+| 1 | When you describe the input data (Section 2.2), angles are actually not real numbers, but positive and circular in nature. Have you considered to change the Gaussianity assumption over X to something else? My impression is that Inference might get too difficult, but might be interesting to check. From the practical point of view, this might not have a strong impact, although it is interesting from the modelling point of view. | Future Work |
+| 1 | In the Results Section, you use one particular clothing trial for testing, but for the final work, leave-one-out validation would be more appropriate. | Future Work |
+| 1 | Dimensionality of latent space: In Section 2.2, you choose q = 5. Why not a higher q and let ARD bring the redundant coeff. to zero? (Of course, the smaller q is, the easier inference is, but there is a risk of restricting the latent space too much). Do you have prior knowledge to expect at most 5 latent dimensions? | Future Work |
+| 1 | More details on how the real-time controller works would be appreciated, but of course, I understand the space limitations of the Workshop. | Future Work |
+| 1 | Regarding Figure 2c), I am surprised PCA is better than GPLVM, why is that? Also, could you further comment on the differences between GPLVM and PCA in terms of qualitative differences? How do PCA trajectories and/or dimensions differ from GPLVM ones? | Improve explanation on RL curves figure with comparison of PCA and BGPLVM |
+| 1 | Regarding the total reward (equation (5)), I am surprised there is no absolute value? It does not correspond to neither L1 nor L2 norms. Could we use any of these too? | Updated equation (5) to (6) and used L2 norm to indicate distance |
+| 1 | Could you comment on computational cost? | Include explanation in results section |
+| 1 | When you say: "Furthermore, the mapping from latent space to data space is modelled using a Gaussian Process", this is exactly how BGPLVM works, so why "Furthermore"? The text leads a little bit to confusion. | Removed the term Furthermore. |
+| 1 |  No need to put the video link twice in the article (also, I tried to watch the video, but it did not work, so that you know). | Remove first reference and improved link format and check video link |
+| 1 | In Results Section, what is a rollout? | Provided an explanation of rollout |
+| 1 | Although it did not compromised the understanding of the paper, English typos should be corrected | Fixed all typos indicated |
+| 2 | Beginning in Sec. 2.1 the authors incorrectly refer to (2) as a marginal likelihood, this is a conditional likelihood, the marginal likelihood is intractable as described in Titsias et al. (2010). | Corrected term to conditional likelihood. |
+| 2 | The authors provide no reference of how ARD parameters are estimated, presumably this is done via the variational approximation of Titsias et al. (2010). | Provide explanation for inference of ARD parameters in Section 2.1 |
+| 2 | The latent space policy search proposed in Sec. 2.3 is mostly explained in words and is confusing as a result. The DMP representation requires an explicit formulation as the relationship between the high-dimensional cost function and latent space embedding is unclear. | Provided equation for the DMP formulation |
+| 2 |  Moreover, because BGPLVM marginalizes over the latent state it is unclear how optimization in this latent space proceeds without adequate detail. | Improve explanation to indicate that a posterior distribution is obtained on latent space instead of MAP estimate. |
+| 2 | The experimental results appear to be conducted on only 4 trials, each at a different arm orientation, with one trial held out for test. The authors should justify that overfitting is not an issue with such limited data. | Emphasis the variability in the dataset to avoid overfitting |
+| 2 | The abstract refers to “latent manifold learning”, which is a bit misleading since no such manifold representation is given | Changed wording to latent space learning. |
+| 2 | 	The wording of the following sentence in the first paragraph is confusing making it difficult to orient the proposed approach with prior work, “This constrained generalization capability to very environmental settings such as major changes in the subject’s posture or using different clothing article.” | Changed the content of this sentence to better convey meaning |
