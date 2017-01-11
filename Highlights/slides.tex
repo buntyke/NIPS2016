@@ -87,7 +87,7 @@
 
     \begin{itemize}
       \item Largest International Conference on Machine Learning.
-      \item Held since 1987 and initially focused on Neural Network research.
+      \item Held since 1987 and focuses on AI, ML, Mathematics, Statistics.
     \end{itemize}
 
     \begin{figure}
@@ -129,10 +129,36 @@
     \frametitle{NIPS 2016: Impressions}
 
     \begin{itemize}
-      \item
+      \item \textbf{Strong industry presence}: Google Deepmind, Facebook AI Research, OpenAI etc
+      \item \textbf{Philosophical panel discussions}: Healthy debates on general trends and future of community.
+      \item \textbf{Emphasis on Deep Learning}: Studies on applications as well as \textbf{theoretical foundations} of Deep Learning.
     \end{itemize}
+    \vskip-1em
+    \begin{columns}
+      \begin{column}{0.33\textwidth}
+        \begin{figure}
+          \centering
+          \caption*{Tutorial on GANs\footnotemark[1]}
+          \includegraphics[width=\textwidth]{goodfellowTutorial.jpg}
+        \end{figure}
+      \end{column}
+      \begin{column}{0.33\textwidth}
+        \begin{figure}
+          \centering
+          \caption*{Conference Venue\footnotemark[1]}
+          \includegraphics[width=\textwidth]{conferenceVenue.jpeg}
+        \end{figure}
+      \end{column}
+      \begin{column}{0.33\textwidth}
+        \begin{figure}
+          \centering
+          \caption*{Boston Dynamics\footnotemark[1]}
+          \includegraphics[width=\textwidth]{bostonDyn.png}
+        \end{figure}
+      \end{column}
+    \end{columns}
 
-    %\footnotetext[1]{}
+    \footnotetext[1]{\href{http://blog.aylien.com/wp-content/uploads/2016/12/full_conference_hall_gan_tutorial.jpg}{Ian Goodfellow's Tutorial on GAN}, \href{https://cdn-images-1.medium.com/max/800/1*l6ILYWwpF9A1KkqK6hwuaA.jpeg}{Image of Conference Venue}, \href{http://sebastianruder.com/content/images/2016/12/boston_dynamics_spot.png}{Boston Dynamics Spot Demo}}
   \end{frame}
 
   \section{Deep Learning}
@@ -142,19 +168,91 @@
   \begin{frame}
     \frametitle{Generative Adversarial Networks: Overview}
 
-    %\footnotetext[1]{}
+    \begin{equation*}
+      \text{min}_G~\text{max}_D~V(D,G) = \mathbb{E}_{x \sim p_{\text{data}}(x)} \log D(x) + \mathbb{E}_{x \sim p_{x}(z)} \log (1 - D(G(z)))
+    \end{equation*}
+    \vskip-1em
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.75\textwidth]{gan1.png}
+    \end{figure}
+
+    \footnotetext[1]{Goodfellow et al. ``Generative adversarial nets'' in \emph{NIPS 2016}}
   \end{frame}
 
   \begin{frame}
     \frametitle{GAN: Tutorials}
 
-    %\footnotetext[1]{}
+    \begin{itemize}
+      \item \href{http://www.iangoodfellow.com/slides/2016-12-04-NIPS.pdf}{Tutorial on GANs by Ian Goodfellow}:
+        \begin{itemize}
+          \item Applications to generate realistic images.
+          \item Learn latent manifolds encoding task variability.
+          \item Theoretical challenges for training models.
+        \end{itemize}
+      \item \href{https://github.com/soumith/ganhacks}{Tutorial on Practical Tips by Soumith Chintala}:
+        \begin{itemize}
+          \item Tips on data preprocessing, network design and optimizers.
+        \end{itemize}
+    \end{itemize}
+    \vskip-1em
+    \begin{columns}
+      \begin{column}{0.33\textwidth}
+        \begin{figure}
+          \centering
+          \caption*{Manifold on MNIST\footnotemark[1]}
+          \includegraphics[width=0.9\textwidth]{gan2.png}
+        \end{figure}
+      \end{column}
+      \begin{column}{0.33\textwidth}
+        \begin{figure}
+          \centering
+          \caption*{Tutorial by Chintala\footnotemark[1]}
+          \includegraphics[width=0.9\textwidth]{chintalaTutorial.png}
+        \end{figure}
+      \end{column}
+    \end{columns}
+
+    \footnotetext[1]{\href{http://www.iro.umontreal.ca/~bengioy/talks/dlss-12aug2015.pdf}{Presentation at DLSS 2015}, \href{https://github.com/soumith/ganhacks}{How to Train Your GAN}}
   \end{frame}
 
   \begin{frame}
     \frametitle{GAN: Applications}
 
-    %\footnotetext[1]{}
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
+        \centering
+        Learning What and Where\footnotemark[1]
+
+        \begin{figure}
+          \centering
+          \includegraphics[width=0.75\textwidth, height=0.25\textheight]{ganApp1.png}
+        \end{figure}
+        \vskip-1em
+        \begin{itemize}
+          \item Use text input to generate novel images.
+          \item Architecture for location and content controllable synthesis.
+        \end{itemize}
+      \end{column}
+
+      \begin{column}{0.5\textwidth}
+        \centering
+        Information Maximizing GANs\footnotemark[2]
+
+        \begin{figure}
+          \centering
+          \includegraphics[width=0.9\textwidth]{ganApp2.png}
+        \end{figure}
+        \vskip-1em
+        \begin{itemize}
+          \item Unsupervised learning of \textbf{disentagled} representations.
+          \item Maximizes mutual information between latent variables and observations.
+        \end{itemize}
+      \end{column}
+    \end{columns}
+
+    \footnotetext[1]{Reed et al., ``Learning what and where to draw'' in \emph{NIPS 2016}}
+    \footnotetext[2]{Chen et al., ``Infogan: Interpretable representation learning by information maximizing generative adversarial nets'' in \emph{NIPS 2016}}
   \end{frame}
 
   \subsection{Bayesian Deep Learning}
@@ -162,19 +260,47 @@
   \begin{frame}
     \frametitle{Bayesian Deep Learning}
 
-    %\footnotetext[1]{}
+    \begin{itemize}
+      \item \href{http://bayesiandeeplearning.org/slides/nips16bayesdeep.pdf}{History of Bayesian Neural Networks by Zoubin Gharamani\footnotemark[1]}:
+        \begin{itemize}
+          \item Derives from Gaussian Process Regression
+          \item Feature selection possible using Automatic Relevance Determination
+          \item Current research on variational inference techniques
+        \end{itemize}
+    \end{itemize}
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=\textwidth]{bnn1.png}
+    \end{figure}
+
+    \footnotetext[1]{Keynote Talk by Zoubin Gharamani}
   \end{frame}
 
   \begin{frame}
     \frametitle{Deep Learning and Graphical Models}
 
-    %\footnotetext[1]{}
+    \centering Combined training of Graphical Models and Deep Neural Networks using Variational Inference\footnotemark[1]
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{bnn2.png}
+    \end{figure}
+
+    \footnotetext[1]{Johnson et al., ``Composing graphical models with neural networks for structured representations and fast inference'' in \emph{NIPS 2016}}
   \end{frame}
 
   \begin{frame}
     \frametitle{Dropout as a Bayesian Approximation}
 
-    %\footnotetext[1]{}
+    \centering Dropout is equivalent to variational inference in Deep GPs with specific kernel function
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=\textwidth]{bnn4.png}
+    \end{figure}
+
+    \footnotetext[1]{Gal et al., ``A theoretically grounded application of dropout in recurrent neural networks'' in \emph{NIPS 2016}}
   \end{frame}
 
   \subsection{Deep Reinforcement Learning}
@@ -182,7 +308,35 @@
   \begin{frame}
     \frametitle{Deep Reinforcement Learning: Tutorials}
 
-    %\footnotetext[1]{}
+    \begin{itemize}
+      \item \href{http://people.eecs.berkeley.edu/~pabbeel/nips-tutorial-policy-optimization-Schulman-Abbeel.pdf}{Deep RL through Policy Optimization\footnotemark[1]}:
+        \begin{itemize}
+          \item History of policy search RL
+          \item Recent trends with DNN policies presented
+          \item Future work on \textbf{Skill Transfer} and \textbf{Exploration}
+        \end{itemize}
+      \item \href{http://rll.berkeley.edu/deeprlcourse/docs/nuts-and-bolts.pdf}{Nuts and Bolts of Deep RL Research\footnotemark[2]}:
+        \begin{itemize}
+          \item Tips on implementing existing algorithms
+          \item Problem formulation for novel tasks
+        \end{itemize}
+    \end{itemize}
+
+    \begin{columns}
+      \begin{column}
+        \begin{figure}
+          \centering
+          \includegraphics[width=0.8\textwidth]{}
+        \end{figure}
+      \end{column}
+      \begin{column}
+        \begin{figure}
+
+        \end{figure}
+      \end{column}
+    \end{columns}
+    \footnotetext[1]{Tutorial by Pieter Abbeel and John Schulman}
+    \footnotetext[2]{Tutorial by John Schulman in Deep RL Workshop}
   \end{frame}
 
   \begin{frame}
