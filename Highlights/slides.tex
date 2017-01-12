@@ -284,7 +284,7 @@
 
     \begin{figure}
       \centering
-      \includegraphics[width=0.8\textwidth]{bnn2.png}
+      \includegraphics[width=0.75\textwidth]{bnn2.png}
     \end{figure}
 
     \footnotetext[1]{Johnson et al., ``Composing graphical models with neural networks for structured representations and fast inference'' in \emph{NIPS 2016}}
@@ -311,8 +311,7 @@
     \begin{itemize}
       \item \href{http://people.eecs.berkeley.edu/~pabbeel/nips-tutorial-policy-optimization-Schulman-Abbeel.pdf}{Deep RL through Policy Optimization\footnotemark[1]}:
         \begin{itemize}
-          \item History of policy search RL
-          \item Recent trends with DNN policies presented
+          \item History of policy search RL focusing on Deep RL
           \item Future work on \textbf{Skill Transfer} and \textbf{Exploration}
         \end{itemize}
       \item \href{http://rll.berkeley.edu/deeprlcourse/docs/nuts-and-bolts.pdf}{Nuts and Bolts of Deep RL Research\footnotemark[2]}:
@@ -322,33 +321,64 @@
         \end{itemize}
     \end{itemize}
 
-    \begin{columns}
-      \begin{column}
-        \begin{figure}
-          \centering
-          \includegraphics[width=0.8\textwidth]{}
-        \end{figure}
-      \end{column}
-      \begin{column}
-        \begin{figure}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{drl1.png}
+    \end{figure}
 
-        \end{figure}
-      \end{column}
-    \end{columns}
     \footnotetext[1]{Tutorial by Pieter Abbeel and John Schulman}
     \footnotetext[2]{Tutorial by John Schulman in Deep RL Workshop}
   \end{frame}
 
   \begin{frame}
-    \frametitle{Deep Reinforcement Learning: Workshop}
+    \frametitle{Opensource Environments}
 
-    %\footnotetext[1]{}
+    \begin{itemize}
+      \item OpenAI Universe\footnotemark[1]: Develop and implement RL algorithms on many environments.
+      \item Google Deepmind\footnotemark[2]: Simulator of 3D environments such as \textbf{Quake} and puzzle tasks.
+      \item Facebook TorchCraft\footnotemark[3]: Bridge between Torch Library and Starcraft Game.
+    \end{itemize}
+    \vskip-1.5em
+    \begin{columns}
+      \begin{column}{0.33\textwidth}
+        \begin{figure}
+          \centering
+          \caption*{OpenAI Universe}
+          \includegraphics[width=0.8\textwidth]{drlApp1.png}
+        \end{figure}
+      \end{column}
+      \begin{column}{0.33\textwidth}
+        \begin{figure}
+          \centering
+          \caption*{Google Deepmind}
+          \includegraphics[width=0.8\textwidth, height=0.25\textheight]{drlApp2.png}
+        \end{figure}
+      \end{column}
+      \begin{column}{0.33\textwidth}
+        \begin{figure}
+          \centering
+          \caption*{Facebook Starcraft}
+          \includegraphics[width=0.8\textwidth]{drlApp3.png}
+        \end{figure}
+      \end{column}
+    \end{columns}
+
+    \footnotetext[1]{\href{https://openai.com/blog/universe/}{OpenAI Universe Press Release}}
+    \footnotetext[2]{\href{https://deepmind.com/blog/open-sourcing-deepmind-lab/}{Google Deepmind Blog}}
+    \footnotetext[3]{\href{https://github.com/TorchCraft/TorchCraft}{TorchCraft Repository on Github}}
   \end{frame}
 
   \begin{frame}
-    \frametitle{Value Iteration Networks}
+    \frametitle{Value Iteration Networks: Best Paper Award}
 
-    %\footnotetext[1]{}
+    \centering
+    Represent Bellman equations with Convolutional Neural Networks to learn Value function
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{drl2.png}
+    \end{figure}
+
+    \footnotetext[1]{Tamar et al., ``Value Iteration Networks'' in \emph{NIPS 2016}}
   \end{frame}
 
   \subsection{Recurrent Neural Networks}
@@ -356,7 +386,17 @@
   \begin{frame}
     \frametitle{Recurrent Neural Networks: Overview}
 
-    %\footnotetext[1]{}
+    \begin{itemize}
+      \item Papers on theoretical foundations (\textbf{better architectures}\footnotemark[1]) and applications (\textbf{Reinforcement Learning}\footnotemark[2]).
+      \item Strong correspondence to Neuroscience research (Fast and Slow time scales\footnotemark[3]).
+    \end{itemize}
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{rnn1.png}
+    \end{figure}
+
+    \footnotetext[1]{}
   \end{frame}
 
   \begin{frame}
