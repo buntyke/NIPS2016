@@ -161,6 +161,73 @@
     \footnotetext[1]{\href{http://blog.aylien.com/wp-content/uploads/2016/12/full_conference_hall_gan_tutorial.jpg}{Ian Goodfellow's Tutorial on GAN}, \href{https://cdn-images-1.medium.com/max/800/1*l6ILYWwpF9A1KkqK6hwuaA.jpeg}{Image of Conference Venue}, \href{http://sebastianruder.com/content/images/2016/12/boston_dynamics_spot.png}{Boston Dynamics Spot Demo}}
   \end{frame}
 
+  \section{General Topics}
+
+  \begin{frame}
+    \frametitle{Nuts and Bolts of ML: Andrew Ng}
+
+    \begin{itemize}
+      \item Practical advice on machine learning research
+      \item Importance of human-level accuracy as metric
+      \item Techniques for collecting data to train models.
+    \end{itemize}
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{ngKeynote.jpg}
+    \end{figure}
+
+    \footnotetext[1]{https://www.youtube.com/watch?v=F1ka6a13S9I}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Predictive Learning: Yann Lecun}
+
+    \begin{figure}
+      \centering
+      \caption*{General AI means agents should have \textbf{Common Sense}\footnotemark[1]}
+      \includegraphics[width=0.8\textwidth]{generalAI2.png}
+    \end{figure}
+
+    \footnotetext[1]{\url{https://nips.cc/Conferences/2016/Schedule?showEvent=6197}}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Predictive Learning: Yann Lecun}
+
+    \begin{figure}
+      \centering
+      \caption*{Key to General AI will be \textbf{Unsupervised Learning}\footnotemark[1]}
+      \includegraphics[width=0.8\textwidth]{generalAI1.png}
+    \end{figure}
+
+    \footnotetext[1]{\url{https://nips.cc/Conferences/2016/Schedule?showEvent=6197}}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Intelligent Biosphere: Drew Purves}
+
+    \begin{figure}
+      \centering
+      \caption*{Intelligent life strongly depends on the environment and vice versa\footnotemark[1]}
+      \includegraphics[width=0.8\textwidth]{generalAI4.png}
+    \end{figure}
+
+    \footnotetext[1]{\url{https://nips.cc/Conferences/2016/Schedule?showEvent=6193}}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Learning from the Brain: Saket Navlakha}
+
+    \begin{figure}
+      \centering
+      \caption*{Pruning of neural connections is crucial for Learning in Brain\footnotemark[1]}
+      \includegraphics[width=0.8\textwidth]{generalAI3.png}
+    \end{figure}
+
+    \footnotetext[1]{https://nips.cc/Conferences/2016/Schedule?showEvent=6192}
+  \end{frame}
+
   \section{Deep Learning}
 
   \subsection{Generative Adversarial Networks}
@@ -393,96 +460,148 @@
 
     \begin{figure}
       \centering
-      \includegraphics[width=0.8\textwidth]{rnn1.png}
+      \includegraphics[width=0.7\textwidth,height=0.45\textheight]{rnn2.png}
     \end{figure}
 
-    \footnotetext[1]{}
-  \end{frame}
-
-  \begin{frame}
-    \frametitle{RNN: Symposia}
-
-    %\footnotetext[1]{}
-  \end{frame}
-
-  \begin{frame}
-    \frametitle{RNN: Applications}
-
-    %\footnotetext[1]{}
+    \footnotetext[1]{http://papers.nips.cc/paper/6114-weight-normalization-a-simple-reparameterization-to-accelerate-training-of-deep-neural-networks}
+    \footnotetext[2]{https://arxiv.org/pdf/1611.02779.pdf}
+    \footnotetext[3]{http://papers.nips.cc/paper/6310-phased-lstm-accelerating-recurrent-network-training-for-long-or-event-based-sequences}
   \end{frame}
 
   \subsection{Meta-learning}
 
   \begin{frame}
-    \frametitle{Learning to learn: Meta-learning}
+    \frametitle{Learning to (learn by gradient descent) by gradient descent}
 
-    %\footnotetext[1]{}
+    \begin{itemize}
+      \item Current optimizers are parametric and domain specific.
+      \item Attempt to learn the optimizer using RNN.
+    \end{itemize}
+    \begin{equation}
+      \theta_{t+1} := \theta_t + g(\Delta f(\theta_t), \phi)
+    \end{equation}
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.9\textwidth]{metalearning1.png}
+    \end{figure}
+
+    \footnotetext[1]{Andrychowicz et al., ``Learning to learn by gradient descent by gradient descent'' in \emph{NIPS 2016}}
   \end{frame}
 
   \begin{frame}
     \frametitle{One-shot Learning}
 
-    %\footnotetext[1]{}
+    \begin{itemize}
+      \item Novel architectures proposed for one-shot learning.
+      \item The idea is a differentiable nearest neighbor classifier.
+    \end{itemize}
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{oneshot1.png}
+    \end{figure}
+
+    \footnotetext[1]{Vinyals et al., ``Matching networks for one shot learning'' in \emph{NIPS 2016}}
   \end{frame}
 
-  \subsection{Neural Turing Computers}
+  \subsection{Differentiable Neural Computers}
 
   \begin{frame}
-    \frametitle{Neural Turing Machines: Overview}
+    \frametitle{Differentiable Neural Computers}
 
-    %\footnotetext[1]{}
+    \begin{itemize}
+      \item Neural Network with memory access (Read, Write, Link).
+      \item Used for skill transfer, reinforcement learning, reasoning etc.
+    \end{itemize}
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{dnc.png}
+    \end{figure}
+
+    \footnotetext[1]{https://deepmind.com/blog/differentiable-neural-computers/}
   \end{frame}
 
-  \begin{frame}
-    \frametitle{NTM: Applications}
-
-    %\footnotetext[1]{}
-  \end{frame}
-
-  \section{General Topics}
-
-  \begin{frame}
-    \frametitle{Nuts and Bolts of ML}
-
-    %\footnotetext[1]{}
-  \end{frame}
-
-  \begin{frame}
-    \frametitle{General AI: Unsupervised Learning}
-
-    %\footnotetext[1]{}
-  \end{frame}
+  \section{Other Topics}
 
   \begin{frame}
     \frametitle{Boston Robotics Demo}
 
-    %\footnotetext[1]{}
+    \begin{center}
+      \href{run:./Videos/BostonDyn.avi?loop}{\includegraphics[width=0.9\textwidth]{./Videos/BostonDyn.png}}
+    \end{center}
+
+    \footnotetext[1]{https://nips.cc/Conferences/2016/Schedule?showEvent=6194}
   \end{frame}
 
   \begin{frame}
-    \frametitle{Efficient seeding for K-Means}
+    \frametitle{Classic Algorithms: KMeans and Matrix Completion}
 
-    %\footnotetext[1]{}
+    \begin{itemize}
+      \item Matrix completion: Non-convex objective for matrix completion has no spurious local minima \footnotemark[1]
+      \item Clustering: Seedings for large-scale k-means++ clustering \footnotemark[2]
+    \end{itemize}
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.9\textwidth]{kmeans.png}
+    \end{figure}
+
+    \footnotetext[1]{http://papers.nips.cc/paper/6048-matrix-completion-has-no-spurious-local-minimum}
+    \footnotetext[2]{http://papers.nips.cc/paper/6478-fast-and-provably-good-seedings-for-k-means}
   \end{frame}
 
   \begin{frame}
     \frametitle{RocketAI: The AI Bubble}
 
-    %\footnotetext[1]{}
+    \centering Prank by NIPS organizers to warn about the AI Bubble
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.5\textwidth]{rocketai2.png}
+    \end{figure}
+
+    \footnotetext[1]{\url{https://medium.com/the-mission/rocket-ai-2016s-most-notorious-ai-launch-and-the-problem-with-ai-hype-d7908013f8c9}}
   \end{frame}
 
-  \section{Visitng Barcelona}
 
   \begin{frame}
     \frametitle{Sightseeing in Barcelona}
 
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
+        \begin{figure}
+          \centering
+          \includegraphics[width=\textwidth]{barc3.jpeg}
+        \end{figure}
+      \end{column}
+      \begin{column}{0.25\textwidth}
+        \begin{figure}
+          \centering
+          \includegraphics[width=\textwidth]{barc1.jpeg}
+        \end{figure}
+      \end{column}
+      \begin{column}{0.25\textwidth}
+        \begin{figure}
+          \centering
+          \includegraphics[width=\textwidth]{barc2.jpeg}
+        \end{figure}
+      \end{column}
+    \end{columns}
   \end{frame}
 
   \begin{frame}[noframenumbering]
 
     \begin{center}
       \Huge{Thank you!}\\~\\
-      \huge{Questions or Comments?}
+      \huge{Take home Messages}
+      \normalsize
+      \begin{itemize}
+        \item Deep Learning is no longer just a tool!
+        \item Emphasis is changing to General AI and Life long learning
+        \item Recurrent Neural Networks are very important!
+      \end{itemize}
     \end{center}
   \end{frame}
 
